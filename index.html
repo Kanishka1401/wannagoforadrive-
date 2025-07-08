@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Drive with Ferrari</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background"></div>
+<div class="container">
+  <div  id="scene-title">AAJA MERI GAADI MEIN BAITH JAA</div>
+
+  <div class="car-wrapper">
+    <img src="ferrari.jpg" class="ferrari" alt="Ferrari Car" />
+
+  </div>
+
+  <div class="lyrics" id="lyrics">lesssgoooo!!!</div>
+</div>
+
+  <div class="explosion" id="explosion"></div>
+
+<audio id="explosion-sound">
+  <source src="explosion-42132.mp3" type="audio/mp3" />
+</audio>
+
+
+  <div id="drive-popup">
+  <div class="popup-box">
+    <p>Do you want to go for a drive?</p>
+    <button id="yes-btn">Yes</button>
+  </div>
+</div>
+
+<div class="flash-ripple" id="flash-ripple"></div>
+<div class="shockwave" id="shockwave"></div>
+
+<audio id="camera-sound">
+  <source src="camera-flash-204151.mp3" type="audio/mp3" />
+</audio>
+
+<audio id="background-music" autoplay loop>
+  <source src="Aaja-Meri-Gaadi-Mein-Baith-Ja.mp3" type="audio/mp3" />
+  Your browser does not support the audio element.
+</audio>
+
+<div class="flash" id="flash"></div>
+
+<div class="wreck-scene" id="wreck-scene">
+  <img src="broken-ferrari.png" class="ferrari-final" alt="Wrecked Ferrari" />
+  <button class="restart-btn" onclick="location.reload()">Try Again</button>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

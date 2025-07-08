@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Play&display=swap');
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Play', sans-serif;
+  background: black;
+  color: white;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('background.webp') no-repeat center center/cover;
+  z-index: -2;
+  filter: brightness(0.5);
+  clip-path: inset(0px 0px 30px 0px);
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1;
+}
+
+.ferrari {
+  position: absolute;
+  right: -600px;
+  bottom: 8%;
+  width: 1000px;
+  filter: drop-shadow(0 0 15px red) brightness(1.1);
+  /* No animation by default */
+}
+
+/* Animation class to add when ready */
+.ferrari.animate {
+  animation: carEnterFromRight 6s ease-out forwards;
+}
+
+@keyframes carEnterFromRight {
+  0% {
+    right: -500px;
+  }
+  60% {
+    right: 40%;
+    transform: scale(1.05);
+  }
+  100% {
+    right: 50%;
+    transform: translateX(50%) scale(1);
+  }
+}
+
+/* 🔥 Camera flash full-screen */
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  z-index: 10000;
+  pointer-events: none;
+  animation: none;
+}
+
+.flash.show {
+  animation: flashBurst 0.5s ease-in-out;
+}
+
+@keyframes flashBurst {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  60% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.shockwave {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 80%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 10001;
+  pointer-events: none;
+  filter: blur(12px);
+}
+
+.shockwave.show {
+  animation: shockwaveExpand 0.8s ease-out forwards;
+}
+
+@keyframes shockwaveExpand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  70% {
+    width: 400px;
+    height: 400px;
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    width: 600px;
+    height: 600px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+
+.lyrics {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#drive-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 99999; /* ← Make this higher than .container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.popup-box {
+  text-align: center;
+  background: #111;
+  border: 2px solid red;
+  padding: 40px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 0 20px red;
+  font-family: 'Orbitron', sans-serif;
+}
+
+#yes-btn {
+  margin-top: 20px;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#yes-btn:hover {
+  transform: scale(1.1);
+}
+
+.container {
+  z-index: 1;
+  position: relative;
+}
+
+.ferrari {
+  z-index: 0; /* keep it behind the popup */
+}
+
+.explosion {
+  position: fixed; /* use fixed for true screen center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1500px;
+  height: 1500px;
+  mix-blend-mode: screen;
+  background: url('explosion.gif') no-repeat center/contain;
+  display: none;
+  z-index: 10005;
+  pointer-events: none;
+}
+
+
+/* Optional: shake the screen when exploding */
+.shake {
+  animation: screenShake 1s ease-in-out;
+}
+
+@keyframes screenShake {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-20px, 15px); }
+  20% { transform: translate(20px, -10px); }
+  30% { transform: translate(-15px, 10px); }
+  40% { transform: translate(15px, -15px); }
+  50% { transform: translate(-10px, 5px); }
+  60% { transform: translate(10px, -5px); }
+  70% { transform: translate(-5px, 10px); }
+  80% { transform: translate(5px, -10px); }
+  90% { transform: translate(-3px, 5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.wreck-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: none;
+  opacity: 0;
+  z-index: 10020;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.wreck-scene.show {
+  opacity: 1;
+}
+
+.ferrari-final {
+  position: absolute;
+  bottom: 0%;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: 90vw;
+  mix-blend-mode: lighten;
+  filter: brightness(1.05) contrast(1.2);
+  z-index: 3;
+  object-fit: cover;
+  clip-path: inset(0px 0px 100px 0px);
+}
+
+/* 💬 Wreck text + quote now stack cleanly */
+.wreck-text,
+.quote,
+.tagline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 90vw;
+  z-index: 4;
+}
+
+.wreck-text {
+  bottom: 18%;
+  color: #e74c3c;
+  font-size: 1.5rem;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 10px red;
+}
+
+.quote {
+  bottom: 14%;
+  color: #ccc;
+  font-style: italic;
+  font-size: 1.2rem;
+  text-shadow: none;
+}
+
+/* 💬 Tagline now sits below quote */
+.tagline {
+  bottom: 9%;
+  color: white;
+  font-size: 1.4rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* ✅ Button now spaced cleanly */
+.restart-btn {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  background: #e74c3c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 5;
+}
+
+.restart-btn:hover {
+  background: #c0392b;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#scene-title {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #ff4d4d;
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px #ff4d4d, 0 0 30px #ff0000;
+  z-index: 1000;
+  transition: opacity 1s ease;
+}
+
+#scene-title.fade-out {
+  opacity: 0;
+}
+
+#scene-title .quote {
+  font-size: 1.2rem;
+  color: #ccc;
+  font-style: italic;
+  text-shadow: none;
+  display: block;
+  margin-top: 5px;
+}
